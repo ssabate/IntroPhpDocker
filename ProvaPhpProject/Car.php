@@ -37,15 +37,15 @@ $mercedes -> comp = "Mercedes Benz";
 
 // Get the values again
 echo $bmw -> color; // blue
-echo "\n";
+echo "<br />";
 echo $mercedes -> color; // beige
-echo "\n";
+echo "<br />";
 echo $bmw -> comp; // BMW
-echo "\n";
+echo "<br />";
 echo $mercedes -> comp; // Mercedes Benz
-echo "\n";
+echo "<hr />";
 
 // Use the methods to get a beep
 echo $bmw -> hello(); // beep
-echo "\n";
+echo "<br />";
 echo $mercedes -> hello(); // beep
