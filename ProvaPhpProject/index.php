@@ -1,6 +1,6 @@
 <?php
 
-echo "Hello from the docker container";
+echo "Hello from the docker container<br />";
 
-echo "<a href='Car.php'>Visit W3Schools.com!</a>";
+echo "<a href='Car.php'>My very first php class!</a>";
 
