@@ -4,15 +4,95 @@
 // Declare the class
 class Car {
 
+    //static properties
+    public static $durada=0;
+
+    public static function modDurada($inc){
+        self::$durada+=$inc;
+
+    }
+
     // properties
     public $comp = null;
     public $color = "beige";
     public $hasSunRoof = true;
     public $tank;
     private $model;
-    function __construct()
+    function __construct($color=null, $tank=null)
     {
+        if($color) $this->color=$color;
+        if($tank) $this->tank=$tank;
         print "In constructor\n";
+    }
+
+    /**
+     * @return null
+     */
+    public function getComp()
+    {
+        return $this->comp;
+    }
+
+    /**
+     * @param null $comp
+     */
+    public function setComp($comp): Car
+    {
+        $marquesConegudes = array("Nissan", "Toyota", "Suzuki");
+
+        if(in_array($comp, $marquesConegudes))
+            $this->comp=$comp;
+        else $this->comp = "Marca desconeguda";
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     */
+    public function setColor(string $color): void
+    {
+        $this->color = $color;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHasSunRoof(): bool
+    {
+        return $this->hasSunRoof;
+    }
+
+    /**
+     * @param bool $hasSunRoof
+     */
+    public function setHasSunRoof(bool $hasSunRoof): void
+    {
+        $this->hasSunRoof = $hasSunRoof;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTank()
+    {
+        return $this->tank;
+    }
+
+    /**
+     * @param mixed $tank
+     */
+    public function setTank($tank): void
+    {
+        $this->tank = $tank;
     }
 
 
@@ -66,6 +146,8 @@ class Car {
         $this-> tank -= $gallons;
         return $this;
     }
+
+
 }
 
 // Create an instance
@@ -104,13 +186,39 @@ echo $mercedes -> hello(); // beep
 
 $mercedes ->tank = 'hjjhj';
 //$mercedes ->ride(1000);
-$mercedes->fill('ddd');
+//$mercedes->fill('ddd');
 
 echo "<br />";
-echo $mercedes->tank;
+//echo 'Fuel mercedes:'.$mercedes->tank;
 
 echo "<br />";
-echo $mercedes->fill(90)->ride(10000)->tank;
+//echo $mercedes->fill(90)->ride(10000)->tank;
 
 echo "<br />";
 echo $mercedes->setModel('BMW')->getModel();
+
+$ibiza = new Car(null,56);
+$ibiza->setComp("Seat");
+echo $ibiza->getComp();
+
+echo "<br />";
+Car::$durada++;
+Car::modDurada(25);
+echo Car::$durada;
+
+class Utility{
+
+    //static properties
+    public static $durada=0;
+
+    public static function modDurada($inc){
+        self::$durada+=$inc;
+
+    }
+
+}
+
+echo "<br />";
+Utility::$durada++;
+Utility::modDurada(25);
+echo Car::$durada;
