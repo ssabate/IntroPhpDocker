@@ -1,0 +1,33 @@
+#!bash
+usage="$(basename "$0") [-h] | [-i imagename -a apacheport -m mysqlport -c containername] -- program to create a container from an image listening to specified Apache and Mysql ports
+
+where:
+    -h  show this help text
+    -i  set the name of the image to use
+    -a  set the Apache (webserver) port to listen
+    -m  set the MySQL (db server) port to listen
+    -c  set the name of the container to create"
+
+if [ "$1" == "-h" ]; then
+  echo "Usage: $usage"
+  exit 0
+fi
+
+while getopts i:a:m:c: flag
+do
+    case "${flag}" in
+        i) image=${OPTARG};;
+        a) apache=${OPTARG};;
+        m) mysql=${OPTARG};;
+        c) container=${OPTARG};;
+    esac
+done
+#echo "Username: $username";
+#echo "Age: $age";
+#echo "Full Name: $fullname";
+
+docker build -t $image .
+docker run -d -p $apache:$apache -p $mysql:$mysql --name $container $image
+
+
+# info trobada a: https://hub.docker.com/r/dockerimages/lampp

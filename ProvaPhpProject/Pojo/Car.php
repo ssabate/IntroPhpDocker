@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Pojo;
 
 // Declare the class
 class Car {
@@ -13,16 +13,23 @@ class Car {
     }
 
     // properties
+    public $array=array(1,2,3,4, "Toyota");
     public $comp = null;
     public $color = "beige";
     public $hasSunRoof = true;
     public $tank;
     private $model;
-    function __construct($color=null, $tank=null)
+    public function __construct($color=null, $tank=null)
     {
         if($color) $this->color=$color;
         if($tank) $this->tank=$tank;
         print "In constructor\n";
+        //foreach($this->array as $v) echo $v;
+    }
+
+    function __destruct(){
+
+        echo "<br>S'ha mort l'objecte ".$this->comp.$this->model."</br>";
     }
 
     /**
@@ -38,7 +45,7 @@ class Car {
      */
     public function setComp($comp): Car
     {
-        $marquesConegudes = array("Nissan", "Toyota", "Suzuki");
+        $marquesConegudes = array("Nissan", "Toyota", "Suzuki", "Seat");
 
         if(in_array($comp, $marquesConegudes))
             $this->comp=$comp;
@@ -149,76 +156,112 @@ class Car {
 
 
 }
-
-// Create an instance
-$bmw = new Car ('');
-$mercedes = new Car ('');
-$seat = new Car('');
-
-echo $seat->comp;
-echo "\n";
-
-// Get the values
-echo $bmw -> color; // beige
-echo "\n";
-echo $mercedes -> color; // beige
-echo "\n";
-
-// Set the values
-$bmw -> color = 'blue';
-$bmw -> comp = "BMW";
-$mercedes -> comp = "Mercedes Benz";
-
-// Get the values again
-echo $bmw -> color; // blue
-echo "<br />";
-echo $mercedes -> color; // beige
-echo "<br />";
-echo $bmw -> comp; // BMW
-echo "<br />";
-echo $mercedes -> comp; // Mercedes Benz
-echo "<hr />";
-
-// Use the methods to get a beep
-echo $bmw -> hello(); // beep
-echo "<br />";
-echo $mercedes -> hello(); // beep
-
-$mercedes ->tank = 'hjjhj';
-//$mercedes ->ride(1000);
-//$mercedes->fill('ddd');
-
-echo "<br />";
-//echo 'Fuel mercedes:'.$mercedes->tank;
-
-echo "<br />";
-//echo $mercedes->fill(90)->ride(10000)->tank;
-
-echo "<br />";
-echo $mercedes->setModel('BMW')->getModel();
-
+//
+//// Create an instance
+//$bmw = new Car ('');
+//$mercedes = new Car ('');
+//$seat = new Car('');
+//
+//echo $seat->comp;
+//echo "\n";
+//
+//// Get the values
+//echo $bmw -> color; // beige
+//echo "\n";
+//echo $mercedes -> color; // beige
+//echo "\n";
+//
+//// Set the values
+//$bmw -> color = 'blue';
+//$bmw -> comp = "BMW";
+//$mercedes -> comp = "Mercedes Benz";
+//
+//// Get the values again
+//echo $bmw -> color; // blue
+//echo "<br />";
+//echo $mercedes -> color; // beige
+//echo "<br />";
+//echo $bmw -> comp; // BMW
+//echo "<br />";
+//echo $mercedes -> comp; // Mercedes Benz
+//echo "<hr />";
+//
+//// Use the methods to get a beep
+//echo $bmw -> hello(); // beep
+//echo "<br />";
+//echo $mercedes -> hello(); // beep
+//
+//$mercedes ->tank = 'hjjhj';
+////$mercedes ->ride(1000);
+////$mercedes->fill('ddd');
+//
+//echo "<br />";
+////echo 'Fuel mercedes:'.$mercedes->tank;
+//
+//echo "<br />";
+////echo $mercedes->fill(90)->ride(10000)->tank;
+//
+//echo "<br />";
+//echo $mercedes->setModel('BMW')->getModel();
+//
 $ibiza = new Car(null,56);
 $ibiza->setComp("Seat");
 echo $ibiza->getComp();
+//
+//echo "<br />";
+//Car::$durada++;
+//Car::modDurada(25);
+//echo Car::$durada;
+//
+//class Utility{
+//
+//    //static properties
+//    public static $durada=0;
+//
+//    public static function modDurada(int $inc){
+//        if(is_int($inc)){
+//            self::$durada+=$inc;
+//            echo "dins";
+//        }
+//
+//    }
+//
+//}
+//
+//echo "<br />";
+//Utility::$durada++;
+//Utility::modDurada(25.10);
+//echo Utility::$durada;
+//
+//class Utilis {
+//    // The method uses PHP's header function to redirect the user.
+//    static public function redirect($url)
+//    {
+//        header("Location: $url");
+//        exit;
+//    }
+//}
 
-echo "<br />";
-Car::$durada++;
-Car::modDurada(25);
-echo Car::$durada;
+#Utilis::redirect("http://www.phpenthusiast.com");
 
-class Utility{
+foreach($ibiza->array as $v)
+    echo $v."---";
 
-    //static properties
-    public static $durada=0;
+array_push($ibiza->array, "Otro");
 
-    public static function modDurada($inc){
-        self::$durada+=$inc;
+print_r(array_chunk($ibiza->array, 2));
 
-    }
+array_pop($ibiza->array);
 
-}
+print(array_chunk($ibiza->array, 2));
 
-echo "<br />";
-Utility::$durada++;
-Utility::modDurada(25);
-echo Car::$durada;
+print_r(array_chunk($ibiza->array, 2));
+$a=array("red","green","blue","yellow","brown");
+$random_keys=array_rand($a,3);
+echo $a[$random_keys[0]]."<br>";
+echo $a[$random_keys[1]]."<br>";
+echo $a[$random_keys[2]];
+
+//class Filla extends Car{
+//
+//}
